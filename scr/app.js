@@ -27,5 +27,9 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/merenda', function (req, res){
+  res.render('merenda')
+});
+
 
 module.exports = app;
