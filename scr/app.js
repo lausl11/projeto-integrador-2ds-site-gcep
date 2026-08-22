@@ -4,14 +4,6 @@ const path = require('path');
 
 const app = express();
 
-// Configuração do Handlebars
-app.engine('handlebars', engine({
-  defaultLayout: 'main',
-  layoutsDir: path.join(__dirname, '../views/layouts'),
-  partialsDir: path.join(__dirname, '../views/partials')
-}));
-app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname, '../views'));
 
 // Arquivos estáticos (CSS, JS, imagens)
 app.use(express.static(path.join(__dirname, '../public')));
