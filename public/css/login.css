@@ -1,0 +1,8 @@
+.textlogin{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: rgb(42, 92, 92);
+    margin: 50px;
+}
