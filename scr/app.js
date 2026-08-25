@@ -1,15 +1,25 @@
 const express = require('express');
 const path = require('path');
+
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-
-
-
-
-app.post('/login', function(req, res) {
+app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../pages/login.html'));
 });
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.post('/login', (req, res) => {
+
+    const email = req.body.email;
+    const senha = req.body.senha;
+
+    console.log(email);
+    console.log(senha);
+
+    res.send('Login recebido');
+
+});
+
 module.exports = app;
