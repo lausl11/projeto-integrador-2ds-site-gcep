@@ -3,11 +3,8 @@ const path = require('path');
 
 const app = express();
 
-<<<<<<< HEAD
-=======
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
->>>>>>> 3aa91dd23892520d83cdc82e9476ecf4a3b0c961
 
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -15,36 +12,6 @@ app.get('/login', (req, res) => {
 res.sendFile(path.join(__dirname, '../pages/login.html'));
 });
 
-<<<<<<< HEAD
-app.get('/login', function (req, res){
-  res.render('login')
-});
-
-app.post('/login', function (req, res){
-    nome: req.body.nome,
-    senha: req.body.senha
-});
-
-app.get('/avisos', function (req, res){
-  res.render('avisos')
-});
-
-app.post('/avisos', function (req, res){
-  res.render('avisos')
-});
-
-app.get('/eventos', function (req, res){
-  res.render('eventos')
-});
-
-app.post('/eventos', function (req, res){
-  res.render('eventos')
-});
-
-
-app.get('/merenda', function (req, res){
-  res.render('merenda')
-=======
 app.post('/login', async (req, res) => {
 
 
@@ -78,7 +45,6 @@ const { nome, email } = req.body;
 
 res.status(200).json({
     mensagem: 'Perfil atualizado com sucesso'
->>>>>>> 3aa91dd23892520d83cdc82e9476ecf4a3b0c961
 });
 
 app.post('/merenda', function (req, res){
