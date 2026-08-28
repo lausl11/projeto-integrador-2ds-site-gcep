@@ -4,21 +4,6 @@ const path = require('path');
 
 const app = express();
 
-// Configuração do Handlebars
-app.engine('handlebars', engine({
-  defaultLayout: 'main',
-  layoutsDir: path.join(__dirname, '../views/layouts'),
-  partialsDir: path.join(__dirname, '../views/partials')
-}));
-app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname, '../views'));
-
-// Arquivos estáticos (CSS, JS, imagens)
-app.use(express.static(path.join(__dirname, '../public')));
-
-// Para receber dados de formulários
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 // Rota de teste (página inicial)
 app.get('/', (req, res) => {
@@ -27,8 +12,43 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/login', function (req, res){
+  res.render('login')
+});
+
+app.post('/login', function (req, res){
+    nome: req.body.nome,
+    senha: req.body.senha
+});
+
+app.get('/avisos', function (req, res){
+  res.render('avisos')
+});
+
+app.post('/avisos', function (req, res){
+  res.render('avisos')
+});
+
+app.get('/eventos', function (req, res){
+  res.render('eventos')
+});
+
+app.post('/eventos', function (req, res){
+  res.render('eventos')
+});
+
+
 app.get('/merenda', function (req, res){
   res.render('merenda')
+});
+
+app.post('/merenda', function (req, res){
+  res.render('merenda')
+});
+
+
+app.post('/ouvidoria', function (req, res){
+  res.render('ouvidoria')
 });
 
 
