@@ -1,8 +1,107 @@
-.textlogin{
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    background-color: rgb(42, 92, 92);
-    margin: 50px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.login-container {
+  background-color: #b0e6ff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-form h1 {
+  text-align: center;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  color: #475569;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.input-group input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.input-group input:focus {
+  border-color: #4f46e5;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #4f46e5;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: #4338ca;
+}
+
+.btn-clicado {
+  width: 100%;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #0081a7, #00afb9); /* Azul moderno */
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 129, 167, 0.3);
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn-clicado:hover {
+  background: linear-gradient(135deg, #006b8b, #0081a7);
+  box-shadow: 0 6px 15px rgba(0, 129, 167, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-clicado:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 129, 167, 0.3);
 }
