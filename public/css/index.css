@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f4f6f8;
+  border-bottom: 3px solid #0081a7;
+  padding: 0 20px;
+  height: 60px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo img {
+  height: 45px;
+  width: auto;
+  display: block;
+}
+
+.brand-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #000;
+}
+
+.nav-menu {
+  display: flex;
+  height: 100%;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #0b3152;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s;
+}
+
+.nav-link.active {
+  background-color: #38b6ff;
+}
+
+.nav-link:hover {
+  background-color: #005691;
+}
+
+.nav-search {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: px;
+}
+.nav-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 4px 8px;
+  font-size: 0.95rem;
+  color: #555;
+  width: 140px;
+}
+
+.nav-search button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn-login-nav {
+  color: #004080;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.btn-login-nav:hover {
+  transform: scale(1.05);
+}
