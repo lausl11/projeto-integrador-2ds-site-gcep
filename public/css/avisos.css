@@ -160,3 +160,96 @@ body {
     opacity: 1;
   }
 }
+
+.avisos-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.header-avisos {
+  margin-bottom: 35px;
+}
+
+.header-avisos .subtitulo {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  opacity: 0.85;
+  font-weight: 600;
+  display: block;
+}
+
+.header-avisos .titulo-principal {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-top: 6px;
+}
+
+.grid-avisos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* Base dos Cards (Glassmorphism) */
+.card-aviso {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  transition: all 0.25s ease;
+}
+
+.card-aviso:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-4px);
+}
+
+.aviso-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge-prioridade.urgente {
+  color: red;
+}
+
+.badge-prioridade.normal {
+  color: #ffffff;
+}
+
+.data-postagem {
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.aviso-body h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.aviso-body p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.88;
+  line-height: 1.5;
+}
+
+.aviso-footer {
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.82rem;
+  opacity: 0.8;
+  font-weight: 600;
+}
