@@ -5,6 +5,14 @@
   font-family: Arial, sans-serif;
 }
 
+body {
+  min-height: 100vh;           
+  background-attachment: fixed;
+  background-repeat: no-repeat; 
+  margin: 0;
+  background: linear-gradient(135deg, #4da9ff, #1775a0);
+}
+
 .navbar {
   display: flex;
   align-items: center;
@@ -58,6 +66,7 @@
 
 .nav-link:hover {
   background-color: #005691;
+  scale: 1.1;
 }
 
 .nav-search {
@@ -99,4 +108,214 @@
 
 .btn-login-nav:hover {
   transform: scale(1.05);
+}
+
+.image {
+  display: flex;
+  flex-direction: row; /* Força a ficar lado a lado */
+  align-items: center; /* Alinha no centro verticalmente */
+  gap: 20px;           /* Espaço entre a imagem e a caixa de texto */
+  width: 90%;          /* Largura total do bloco na página */
+  margin: 0 auto;
+  scale: .8;
+}
+
+.index-span {
+  max-width: 80%;
+  line-height: 2.6;
+  
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: -30px;
+
+  color: #ffffff;
+  font-size: 24px;
+
+  animation: slideIn2 4s;
+}
+
+.index-header {
+  padding: 30px 30px;
+  max-width: 40%;
+  
+  margin-top: 35px;
+  margin-left: 200px;
+  margin-right: 0px;
+
+  color: #ffffff;
+  font-size: 2rem;
+
+  animation: slideIn1 1s;
+}
+
+/* animações */
+@keyframes slideIn1 {
+  from {
+    opacity: 0;
+    transform: translateX(150) scale(0.75);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideIn2 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.inicio-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.hero-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.hero-content .subtitulo {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  opacity: 0.85;
+  font-weight: 600;
+  display: block;
+}
+
+.hero-content .titulo-principal {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin: 6px 0 16px 0;
+}
+
+.hero-descricao {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 24px;
+}
+
+.hero-botoes {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-hero {
+  text-decoration: none;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+
+.btn-hero.primary {
+  background: #ffffff;
+  color: #0c2661;
+}
+
+.btn-hero.primary:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-2px);
+}
+
+.btn-hero.secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-hero.secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.hero-media {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.destaques-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card-destaque {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: all 0.25s ease;
+}
+
+.card-destaque:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+.destaque-info h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.destaque-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.85;
+  line-height: 1.4;
+}
+
+@media (max-width: 850px) {
+  .hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-media {
+    height: 200px;
+  }
+}
+
+.link-card {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block;
+}
+
+.card-destaque h3,
+.card-destaque p {
+  color: #ffffff !important;
+  text-decoration: none !important;
 }
