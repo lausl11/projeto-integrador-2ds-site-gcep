@@ -1,7 +1,11 @@
 const express = require('express');
 const path = require('path');
 
+console.log('APP CARREGADO');
+
 const app = express();
+
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -30,7 +34,7 @@ res.redirect('/');
 });
 
 app.get('/', function(req, res) {
-res.sendFile(path.join(__dirname, '../pages/index.html'));
+res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 app.get('/perfil', function(req, res){
@@ -39,13 +43,15 @@ res.sendFile(path.join(__dirname, '../pages/perfil.html'));
 
 app.put('/perfil/:id', async (req, res) => {
 
+    const { id } = req.params;
+    const { nome, email } = req.body;
 
-const { id } = req.params;
-const { nome, email } = req.body;
+    res.status(200).json({
+        mensagem: 'Perfil atualizado com sucesso'
+    });
 
-res.status(200).json({
-    mensagem: 'Perfil atualizado com sucesso'
 });
+
 
 app.post('/merenda', function (req, res){
   res.render('merenda')
@@ -57,7 +63,7 @@ app.post('/ouvidoria', function (req, res){
 });
 
 
-});
+
 
 app.get('/avisos', function(req, res){
 res.sendFile(path.join(__dirname, '../pages/avisos.html'));
