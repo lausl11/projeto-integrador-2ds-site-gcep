@@ -295,3 +295,7 @@ body {
 .quinta {
   animation: slideIn3 4s; 
 }
+
+.sexta {
+  animation: slideIn3 5s; 
+}

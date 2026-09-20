@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANTI-GECEPERS Merenda</title>
     <link rel="stylesheet" href="/css/merenda.css">
+    
 </head>
 <body>
    <header class="navbar">
@@ -42,7 +43,7 @@
 <section class="merenda-container">
 
 <div class="cardapio-semanal">
-  <div class="segunda">
+  <div class="segunda" id="segunda">
     <div class="dia-card">
       <div class="dia-header">
         <span class="dia-nome">Segunda-feira</span>
@@ -59,11 +60,11 @@
     </div>
   </div>
 
-  <div class="terça">
+  <div class="terça" id="terça">
     <div class="dia-card hoje">
       <div class="dia-header">
         <span class="dia-nome">Terça-feira</span>
-        <span class="tag-hoje">Hoje</span>
+        <span class="tag-tipo">molhudo</span>
       </div>
       <div class="dia-body">
         <h3>Macarrão à Bolonhesa</h3>
@@ -76,7 +77,7 @@
     </div>
   </div>
 
-  <div class="quarta">
+  <div class="quarta" id="quarta">
     <div class="dia-card">
       <div class="dia-header">
         <span class="dia-nome">Quarta-feira</span>
@@ -93,7 +94,7 @@
     </div>
   </div>
 
-  <div class="quinta">
+  <div class="quinta" id="quinta">
     <div class="dia-card">
       <div class="dia-header">
         <span class="dia-nome">Quinta-feira</span>
@@ -108,10 +109,13 @@
         <span>Suco: Acerola</span>
       </div>
     </div>
+
+
+    
   </div>
 </div>
 
 </section>
-
+<script src="/js/merenda.js"></script>
 </body>
 </html>
