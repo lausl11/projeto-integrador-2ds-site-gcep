@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANTI-GECEPERS Login</title>
-    <link rel="stylesheet" href="../public/css/login.css">
+    <link rel="stylesheet" href="/css/login.css">
     <script src="../public/js/login.js"></script>
 </head>
 <body>
@@ -14,7 +14,7 @@
 
 
     <div class="login-container">
-        <form action="../pages/login.html" method="POST" class="login-form">
+        <form action="/login" method="POST" class="login-form">
             <h1>Login</h1>
 
         <div class="input-group">
@@ -28,9 +28,27 @@
         </div>
 
         <div class="button-group">
-            <button  class="btn-clicado" type="button" onclick="verificarEmail()">Entrar</button>
+            <button  class="btn-clicado" type="submit" onclick="verificarEmail()">Entrar</button>
         </div>
     </form>
     </div>
+    <script>
+        function verificarEmail() {
+
+    const email = document.getElementById('email').value;
+
+    if (
+        !email.endsWith('@escola') &&
+        !email.endsWith('@adm')
+    ) {
+
+        alert('Email inválido');
+        return false;
+
+    }
+
+    return true;
+}
+    </script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 
-console.log('APP CARREGADO');
 
 const app = express();
 
@@ -16,7 +15,7 @@ app.get('/login', (req, res) => {
 res.sendFile(path.join(__dirname, '../pages/login.html'));
 });
 
-app.post('/login', async (req, res) => {
+app.post('/login', (req, res) => {
 
 
 const { email, senha } = req.body;
@@ -24,17 +23,26 @@ const { email, senha } = req.body;
 console.log(email);
 console.log(senha);
 
-if (!email.endsWith('@escola')) {
-    return res.status(403).send('Acesso negado');
+if (email.endsWith('@escola')) {
+    res.redirect('/')
+}
+
+else if(email.endsWith('@adm')) {
+    res.redirect('/adm')
+}
+
+else{
+    return res.redirect('/login?erro=1');
 }
 
 res.redirect('/');
+res.send('Funcionou');
 
 
 });
 
 app.get('/', function(req, res) {
-res.sendFile(path.join(__dirname, '/index.html'));
+res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 app.get('/perfil', function(req, res){
