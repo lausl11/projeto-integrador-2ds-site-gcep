@@ -1,4 +1,6 @@
-const diaAtual = 1; //so funciona quando for de segunda a quinta, fora é underfine
+
+
+const diaAtual = new Date().getDay(); //so funciona quando for de segunda a quinta, fora é underfine
 
 var cardHoje;
 
@@ -14,12 +16,15 @@ else if (diaAtual === 3) {
 else if (diaAtual === 4) {
     cardHoje = document.getElementById('quinta');
 }
+else if (diaAtual === 5) {
+    cardHoje = document.getElementById('sexta');
+}
 
-const tagHoje = document.createElement('span');
+const tagHoje = document.createElement('span'); //<span> </span>
 
-tagHoje.textContent = 'Hoje';
+tagHoje.textContent = 'Hoje'; //<span>hoje</span>
 
-tagHoje.classList.add('tag-hoje');
+tagHoje.classList.add('tag-hoje');//<span class="tag-hoje">hoje</span>
 
 if (cardHoje) {
 
