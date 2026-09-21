@@ -1,6 +1,6 @@
 
 
-const diaAtual = new Date().getDay(); //so funciona quando for de segunda a quinta, fora é underfine
+const diaAtual = new Date().getDay(); //so funciona quando for de segunda a Ssexta, fora é underfine
 
 var cardHoje;
 

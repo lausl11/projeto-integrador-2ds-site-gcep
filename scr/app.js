@@ -189,5 +189,9 @@ res.json({
 
 });
 
+app.get('/adm', function(req, res){
+res.sendFile(path.join(__dirname, '../pages/adm.html'));
+});
+
 
 module.exports = app;
