@@ -10,7 +10,22 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  background: linear-gradient(-45deg, #4da9ff, #1e94a3, #1f188b, #1775a0);
+  background-size: 400% 400%;
+
+  animation: gradienteFluido 30s ease infinite;
+}
+
+@keyframes gradienteFluido {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .logo {
@@ -20,7 +35,7 @@ body {
 }
 
 .login-container {
-  background-color: #b0e6ff;
+  background-color: #b0e6ff80;
   padding: 2.5rem;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
