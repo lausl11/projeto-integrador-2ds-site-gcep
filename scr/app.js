@@ -1,9 +1,20 @@
 const express = require('express');
 const path = require('path');
 
+const session = require('express-session');
+
+
 
 const app = express();
 
+app.use(session({
+    secret: 'gcepers-chave-secreta',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60
+    }
+}));
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -17,32 +28,52 @@ res.sendFile(path.join(__dirname, '../pages/login.html'));
 
 app.post('/login', (req, res) => {
 
+    const { email, senha } = req.body;
 
-const { email, senha } = req.body;
+    if (email.endsWith('@escola')) {
 
-console.log(email);
-console.log(senha);
+        req.session.usuario = {
+            email: email,
+            tipo: 'escola'
+        };
 
-if (email.endsWith('@escola')) {
-    res.redirect('/')
-}
+        res.redirect('/');
 
-else if(email.endsWith('@adm')) {
-    res.redirect('/adm')
-}
+    }
 
-else{
-    return res.redirect('/login?erro=1');
-}
+    else if (email.endsWith('@adm')) {
 
-res.redirect('/');
-res.send('Funcionou');
+        req.session.usuario = {
+            email: email,
+            tipo: 'adm'
+        };
 
+        res.redirect('/adm');
+
+    }
+
+    else {
+        res.redirect('/login?erro=1');
+    }
 
 });
 
 app.get('/', function(req, res) {
-res.sendFile(path.join(__dirname, '../index.html'));
+
+    if (req.session.usuario) {
+
+        if (req.session.usuario.tipo === 'adm') {
+            return res.redirect('/adm');
+        }
+
+        if (req.session.usuario.tipo === 'escola') {
+            return res.sendFile(path.join(__dirname, '../index.html'));
+        }
+
+    }
+
+    res.redirect('/login');
+
 });
 
 app.get('/perfil', function(req, res){
