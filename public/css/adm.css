@@ -1,200 +1,301 @@
+
+/* ==============================
+   CONFIGURAÇÕES GERAIS
+================================= */
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-  min-height: 100vh;           
-  background-attachment: fixed;
-  background-repeat: no-repeat; 
-  margin: 0;
-  background: linear-gradient(-45deg, #4da9ff, #1e94a3, #237a76, #1775a0);
-  background-size: 400% 400%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 
-  animation: gradienteFluido 15s ease infinite;
+    background: linear-gradient(-45deg, #4da9ff, #1e94a3, #237a76, #1775a0);
+    background-size: 400% 400%;
+    background-attachment: fixed;
+
+    animation: gradienteFluido 15s ease infinite;
 }
 
+
+/* ==============================
+   ANIMAÇÕES
+================================= */
+
 @keyframes gradienteFluido {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 @keyframes slideIn1 {
-  from {
-    opacity: 0;
-    transform: translateX(150) scale(0.75);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
+    from {
+        opacity: 0;
+        transform: translateX(150px) scale(0.75);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
 }
 
 @keyframes slideIn2 {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
+
+
+/* ==============================
+   TÍTULO DASHBOARD
+================================= */
+
+.index-header {
+    padding: 20px 40px;
+    color: #ffffff;
+}
+
+
+/* ==============================
+   CONTAINER PRINCIPAL
+================================= */
 
 .inicio-container {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  box-sizing: border-box;
-  color: #ffffff;
-  font-family: system-ui, -apple-system, sans-serif;
-  display: flex;
-  align-items: center;
-  flex-direction: start;
-  gap: 10px;
+    width: 100%;
+    max-width: none;
+    min-height: calc(100vh - 90px);
+    padding: 60px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.hero-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 36px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  align-items: center;
-}
 
-.hero-content .subtitulo {
-  font-size: 0.85rem;
-  letter-spacing: 2px;
-  opacity: 0.85;
-  font-weight: 600;
-  display: block;
-}
-
-.hero-content .titulo-principal {
-  font-size: 2.8rem;
-  font-weight: 800;
-  margin: 6px 0 16px 0;
-}
-
-.hero-descricao {
-  font-size: 1rem;
-  line-height: 1.6;
-  opacity: 0.9;
-  margin-bottom: 24px;
-}
-
-.hero-botoes {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.btn-hero {
-  text-decoration: none;
-  padding: 12px 24px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  transition: all 0.25s ease;
-}
-
-.btn-hero.primary {
-  background: #ffffff;
-  color: #0c2661;
-}
-
-.btn-hero.primary:hover {
-  background: rgba(255, 255, 255, 0.85);
-  transform: translateY(-2px);
-}
-
-.btn-hero.secondary {
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.btn-hero.secondary:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
-}
-
-.hero-media {
-  width: 100%;
-  height: 280px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-.hero-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+/* ==============================
+   GRID DOS CARDS
+================================= */
 
 .destaques-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    align-items: stretch;
 }
 
+
+/* ==============================
+   CARDS
+================================= */
+
 .card-destaque {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 20px;
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  transition: all 0.25s ease;
+    background: #cbd5df;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: 0.3s;
+    height: 440px;
 }
 
 .card-destaque:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-4px);
+    transform: translateY(-5px);
 }
 
+.card-destaque:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+}
+
+
+/* ==============================
+   INFORMAÇÕES DOS CARDS
+================================= */
+
+
+
 .destaque-info h3 {
-  margin: 0 0 6px 0;
-  font-size: 1.1rem;
-  font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: black;
+    width: 100%;
+    height: 60%;
 }
 
 .destaque-info p {
-  margin: 0;
-  font-size: 0.85rem;
-  opacity: 0.85;
-  line-height: 1.4;
+    font-size: 1rem;
+    color: #444;
 }
 
-@media (max-width: 850px) {
-  .hero-card {
-    grid-template-columns: 1fr;
-  }
 
-  .hero-media {
-    height: 200px;
-  }
+/* ==============================
+   ÍCONES
+================================= */
+
+.icone-box {
+    width: 100%;
+    height: 60%;
+    
 }
+
+
+/* ==============================
+   LINKS
+================================= */
 
 .link-card {
-  text-decoration: none !important;
-  color: inherit !important;
-  display: block;
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .card-destaque h3,
 .card-destaque p {
-  color: #ffffff !important;
-  text-decoration: none !important;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+/* ==============================
+   HERO CARD
+================================= */
+
+.hero-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    padding: 36px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+
+    align-items: center;
+}
+
+.hero-content .subtitulo {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    opacity: 0.85;
+    font-weight: 600;
+    display: block;
+}
+
+.hero-content .titulo-principal {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin: 6px 0 16px 0;
+}
+
+.hero-descricao {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin-bottom: 24px;
+}
+
+.hero-botoes {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-hero {
+    text-decoration: none;
+    padding: 12px 24px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.25s ease;
+}
+
+.btn-hero.primary {
+    background: #ffffff;
+    color: #0c2661;
+}
+
+.btn-hero.primary:hover {
+    background: rgba(255, 255, 255, 0.85);
+    transform: translateY(-2px);
+}
+/* ==============================
+   RESPONSIVIDADE
+================================= */
+.btn-hero.secondary {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-hero.secondary:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.hero-media {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+@media (max-width: 850px) {
+    .destaques-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-card {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-media {
+        height: 200px;
+    }
+}
+
+@media (max-width: 550px) {
+    .destaques-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .inicio-container {
+        padding: 20px;
+    }
+
+    .index-header {
+        padding: 20px;
+    }
+
+    .card-destaque {
+        min-height: 140px;
+        padding: 20px;
+    }
 }
