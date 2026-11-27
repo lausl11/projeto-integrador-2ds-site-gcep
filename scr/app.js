@@ -22,7 +22,6 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
 
-// MIDDLEWARE: VERIFICA SE ESTÁ LOGADO
 function verificarLogin(req, res, next) {
 
     if (!req.session.usuario) {
@@ -33,7 +32,6 @@ function verificarLogin(req, res, next) {
 }
 
 
-// MIDDLEWARE: VERIFICA SE É ADMINISTRADOR
 function verificarAdm(req, res, next) {
 
     if (!req.session.usuario) {
@@ -46,6 +44,12 @@ function verificarAdm(req, res, next) {
 
     next();
 }
+
+app.get('/api/sessao', (req, res) => {
+    res.json({
+        usuario: req.session.usuario || null
+    });
+});
 
 
 // LOGIN

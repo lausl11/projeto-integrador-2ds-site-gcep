@@ -2,19 +2,18 @@
   const headerHTML = `
   <header class="navbar">
     <div class="nav-brand">
-      <div class="logo">
-        <a href="/index.html"><img src="../public/images/cep_logo.png" alt="Logo"></a>
-      </div>
-      <span class="brand-name">GCEPERS</span>
+        <div class="logo">
+        <a href="/"><img src="/images/cep_logo.png" alt="Logo"></a>
+        </div>
+        <span class="brand-name">GCEPERS</span>
     </div>
 
     <nav class="nav-menu">
-      <a href="/afm" class="nav-link">PAINEL ADM</a>
-      <a href="/index.html" class="nav-link">INÍCIO</a>
-      <a href="pages/avisos.html" class="nav-link">AVISOS</a>
-      <a href="pages/eventos.html" class="nav-link">EVENTOS</a>
-      <a href="pages/merenda.html" class="nav-link">MERENDA</a>
-      <a href="pages/perfil.html" class="nav-link">PERFIL</a>
+      <a href="/" class="nav-link">INÍCIO</a>
+      <a href="/avisos" class="nav-link">AVISOS</a>
+      <a href="/eventos" class="nav-link">EVENTOS</a>
+      <a href="/merenda" class="nav-link">MERENDA</a>
+      <a href="/perfil" class="nav-link">PERFIL</a>
     </nav>
 
     <div class="header-actions">
@@ -222,9 +221,38 @@ html, body {
     }
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", montarHeader);
-  } else {
+  async function configurarMenu() {
+    try {
+        const resposta = await fetch('/api/sessao');
+        const dados = await resposta.json();
+
+        if (dados.usuario && dados.usuario.tipo === 'adm') {
+            const menu = document.querySelector('.nav-menu');
+
+            if (menu && !document.getElementById('link-painel-adm')) {
+                const linkAdm = document.createElement('a');
+
+                linkAdm.href = '/adm';
+                linkAdm.className = 'nav-link';
+                linkAdm.id = 'link-painel-adm';
+                linkAdm.textContent = 'PAINEL ADM';
+
+                menu.prepend(linkAdm);
+            }
+        }
+    } catch (erro) {
+        console.error('Erro ao carregar informações da sessão:', erro);
+    }
+}
+
+function iniciarHeader() {
     montarHeader();
-  }
+    configurarMenu();
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", iniciarHeader);
+} else {
+    iniciarHeader();
+}
 })();
