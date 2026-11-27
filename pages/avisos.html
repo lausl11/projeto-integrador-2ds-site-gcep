@@ -1,89 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GCEPERS | AVISOS</title>
-    <link rel="stylesheet" href="./public/css/avisos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GCEPERS | Avisos</title>
+  <link rel="stylesheet" href="../public/css/avisos.css">
 </head>
 <body>
-       <header class="navbar">
-    <div class="nav-brand">
-      <div class="logo">
-        <a href="/"><img src="../images/cep_logo.png" alt="Logo"></a>
-      </div>
-      <span class="brand-name">GCEPERS</span>
-    </div>
 
-    <nav class="nav-menu">
-      <a href="/" class="nav-link">INÍCIO</a>
-      <a href="/avisos" class="nav-link active">AVISOS</a>
-      <a href="/eventos" class="nav-link">EVENTOS</a>
-      <a href="/merenda" class="nav-link">MERENDA</a>
-      <a href="/perfil" class="nav-link">PERFIL</a>
-    </nav>
+  <!-- Cabeçalho dinâmico -->
+  <div id="header-placeholder"></div>
 
-    <div class="nav-search">
-        <div class="nav-right">
-    <a href="/login" class="btn-login-nav">LOGIN</a>
-      <input type="text" placeholder="Pesquisar">
-      <button type="button">&#128269</button>
-    </div>
-  </header>
+  <!-- Conteúdo Principal -->
+  <main class="avisos-page">
+    <header class="page-header">
+      <h1>Mural de Avisos</h1>
+      <p>Fique por dentro dos comunicados oficiais, prazos e informações do Colégio Estadual do Paraná.</p>
+    </header>
 
-<div class="avisos-span">
-  <span>NOVOS AVISOS</span>
-</div>
-<div class="avisos-header">
-  <h1>AVISOS RECENTES</h1>
-</div>
+    <section class="grid-avisos" aria-label="Lista de avisos">
+      <!-- Aviso 1 (Destaque) -->
+      <article class="card-aviso destaque">
+        <div class="aviso-header">
+          <span class="badge-prioridade urgente">Importante</span>
+          <time class="data-postagem" datetime="2026-08-28">28 de Ago, 2026</time>
+        </div>
+        <div class="aviso-body">
+          <h3>Manutenção do Portal Acadêmico</h3>
+          <p>O sistema passará por uma atualização programada no próximo domingo, entre 02h e 06h. O acesso poderá ficar instável durante esse período.</p>
+        </div>
+        <div class="aviso-footer">
+          <span class="autor">Secretaria Escolar</span>
+        </div>
+      </article>
 
-<div class="grid-avisos">
-    <!-- Aviso Importante / Geral -->
-    <article class="card-aviso destaque">
-      <div class="aviso-header">
-        <span class="badge-prioridade urgente">Importante</span>
-        <span class="data-postagem">28 de Ago, 2026</span>
-      </div>
-      <div class="aviso-body">
-        <h3>Manutenção do Portal Acadêmico</h3>
-        <p>O sistema passará por uma atualização programada no próximo domingo, entre 02h e 06h. O acesso poderá ficar instável durante esse período.</p>
-      </div>
-      <div class="aviso-footer">
-        <span class="autor">Secretaria Escolar</span>
-      </div>
-    </article>
+      <!-- Aviso 2 -->
+      <article class="card-aviso">
+        <div class="aviso-header">
+          <span class="badge-prioridade normal">Informativo</span>
+          <time class="data-postagem" datetime="2026-08-25">25 de Ago, 2026</time>
+        </div>
+        <div class="aviso-body">
+          <h3>Entrega de Carteirinhas Estudantis</h3>
+          <p>As novas carteirinhas do 2º semestre já estão disponíveis para retirada no setor de atendimento ao aluno durante os intervalos.</p>
+        </div>
+        <div class="aviso-footer">
+          <span class="autor">Coordenação</span>
+        </div>
+      </article>
 
-    <!-- Aviso 2 -->
-    <article class="card-aviso">
-      <div class="aviso-header">
-        <span class="badge-prioridade normal">Informativo</span>
-        <span class="data-postagem">25 de Ago, 2026</span>
-      </div>
-      <div class="aviso-body">
-        <h3>Entrega de Carteirinhas Estudantis</h3>
-        <p>As novas carteirinhas do 2º semestre já estão disponíveis para retirada no setor de atendimento ao aluno durante os intervalos.</p>
-      </div>
-      <div class="aviso-footer">
-        <span class="autor">Coordenação</span>
-      </div>
-    </article>
+      <!-- Aviso 3 -->
+      <article class="card-aviso">
+        <div class="aviso-header">
+          <span class="badge-prioridade geral">Geral</span>
+          <time class="data-postagem" datetime="2026-08-20">20 de Ago, 2026</time>
+        </div>
+        <div class="aviso-body">
+          <h3>Horário do Laboratório de Informática</h3>
+          <p>Lembramos que o Lab 02 estará aberto para estudos individuais de segunda a quinta-feira, das 13h às 17h.</p>
+        </div>
+        <div class="aviso-footer">
+          <span class="autor">TI / Suporte</span>
+        </div>
+      </article>
+    </section>
+  </main>
 
-    <!-- Aviso 3 -->
-    <article class="card-aviso">
-      <div class="aviso-header">
-        <span class="badge-prioridade normal">Geral</span>
-        <span class="data-postagem">20 de Ago, 2026</span>
-      </div>
-      <div class="aviso-body">
-        <h3>Horário do Laboratório de Informática</h3>
-        <p>Lembramos que o Lab 02 estará aberto para estudos individuais de segunda a quinta-feira, das 13h às 17h.</p>
-      </div>
-      <div class="aviso-footer">
-        <span class="autor">TI / Suporte</span>
-      </div>
-    </article>
-  </div>
+  <!-- Rodapé dinâmico -->
+  <div id="footer-placeholder"></div>
 
+  <!-- Scripts carregados no final para não travar a renderização -->
+  <script src="../public/js/header.js"></script>
+  <script src="../public/js/footer.js"></script>
 </body>
 </html>
