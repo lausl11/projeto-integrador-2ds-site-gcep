@@ -1,86 +1,158 @@
+
 const express = require('express');
 const path = require('path');
-
 const session = require('express-session');
-
-
 
 const app = express();
 
+// CONFIGURAÇÃO DA SESSÃO
 app.use(session({
     secret: 'gcepers-chave-secreta',
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 1000 * 60 * 60
+        maxAge: 1000 * 60 * 60,
+        httpOnly: true
     }
 }));
-
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '../public')));
 
+
+// MIDDLEWARE: VERIFICA SE ESTÁ LOGADO
+function verificarLogin(req, res, next) {
+
+    if (!req.session.usuario) {
+        return res.redirect('/login');
+    }
+
+    next();
+}
+
+
+// MIDDLEWARE: VERIFICA SE É ADMINISTRADOR
+function verificarAdm(req, res, next) {
+
+    if (!req.session.usuario) {
+        return res.redirect('/login');
+    }
+
+    if (req.session.usuario.tipo !== 'adm') {
+        return res.redirect('/');
+    }
+
+    next();
+}
+
+
+// LOGIN
 app.get('/login', (req, res) => {
-res.sendFile(path.join(__dirname, '../pages/login.html'));
+
+    if (req.session.usuario) {
+        return res.redirect('/');
+    }
+
+    res.sendFile(path.join(__dirname, '../pages/login.html'));
 });
 
-app.post('/login', (req, res) => {
 
-    const { email, senha } = req.body;
+app.post('/login', (req, res, next) => {
+
+    const email = String(req.body.email || '').trim().toLowerCase();
+
+    let tipo;
 
     if (email.endsWith('@escola')) {
-
-        req.session.usuario = {
-            email: email,
-            tipo: 'escola'
-        };
-
-        res.redirect('/');
-
+        tipo = 'escola';
     }
 
     else if (email.endsWith('@adm')) {
-
-        req.session.usuario = {
-            email: email,
-            tipo: 'adm'
-        };
-
-        res.redirect('/adm');
-
+        tipo = 'adm';
     }
 
     else {
-        res.redirect('/login?erro=1');
+        return res.redirect('/login?erro=1');
     }
 
+    // Cria uma nova sessão
+    req.session.regenerate((erro) => {
+
+        if (erro) {
+            return next(erro);
+        }
+
+        req.session.usuario = {
+            email: email,
+            tipo: tipo
+        };
+
+        req.session.save((erro) => {
+
+            if (erro) {
+                return next(erro);
+            }
+
+            if (tipo === 'adm') {
+                return res.redirect('/adm');
+            }
+
+            return res.redirect('/');
+
+        });
+
+    });
+
 });
 
-app.get('/', function(req, res) {
 
-    if (req.session.usuario) {
+// SAIR / LOGOUT
+app.get('/logout', (req, res) => {
 
-        if (req.session.usuario.tipo === 'adm') {
-            return res.redirect('/adm');
+    req.session.destroy((erro) => {
+
+        if (erro) {
+            return res.status(500).send('Erro ao encerrar sessão.');
         }
 
-        if (req.session.usuario.tipo === 'escola') {
-            return res.sendFile(path.join(__dirname, '../index.html'));
-        }
+        res.clearCookie('connect.sid');
+        res.redirect('/login');
 
+    });
+
+});
+
+
+// INÍCIO
+app.get('/', verificarLogin, (req, res) => {
+
+    if (req.session.usuario.tipo === 'adm') {
+        return res.redirect('/adm');
     }
 
-    res.redirect('/login');
+    res.sendFile(path.join(__dirname, '../index.html'));
 
 });
 
-app.get('/perfil', function(req, res){
-res.sendFile(path.join(__dirname, '../pages/perfil.html'));
+
+// PAINEL ADMINISTRATIVO
+app.get('/adm', verificarAdm, (req, res) => {
+
+    res.sendFile(path.join(__dirname, '../pages/adm.html'));
+
 });
 
-app.put('/perfil/:id', async (req, res) => {
+
+// PERFIL
+app.get('/perfil', verificarLogin, (req, res) => {
+
+    res.sendFile(path.join(__dirname, '../pages/perfil.html'));
+
+});
+
+app.put('/perfil/:id', verificarLogin, (req, res) => {
 
     const { id } = req.params;
     const { nome, email } = req.body;
@@ -92,136 +164,123 @@ app.put('/perfil/:id', async (req, res) => {
 });
 
 
-app.post('/merenda', function (req, res){
-  res.render('merenda')
-});
+// AVISOS
+app.get('/avisos', verificarLogin, (req, res) => {
 
-
-app.post('/ouvidoria', function (req, res){
-  res.render('ouvidoria')
-});
-
-
-
-
-app.get('/avisos', function(req, res){
-res.sendFile(path.join(__dirname, '../pages/avisos.html'));
-});
-
-app.post('/avisos', function(req, res){
-
-
-const { titulo, descricao } = req.body;
-
-res.json({
-    mensagem: 'Aviso criado'
-});
-
+    res.sendFile(path.join(__dirname, '../pages/avisos.html'));
 
 });
 
-app.put('/avisos/:id', function(req, res){
+app.post('/avisos', verificarAdm, (req, res) => {
 
+    const { titulo, descricao } = req.body;
 
-const {id} = req.params;
-
-res.json({
-    mensagem: `Aviso ${id} atualizado`
-});
-
+    res.json({
+        mensagem: 'Aviso criado'
+    });
 
 });
 
-app.delete('/avisos/:id', function(req, res){
+app.put('/avisos/:id', verificarAdm, (req, res) => {
 
+    const { id } = req.params;
 
-const { id } = req.params;
-
-res.json({
-    mensagem: `Aviso ${id} removido`
-});
-
+    res.json({
+        mensagem: `Aviso ${id} atualizado`
+    });
 
 });
 
-app.get('/eventos', function(req, res){
-res.sendFile(path.join(__dirname, '../pages/eventos.html'));
-});
+app.delete('/avisos/:id', verificarAdm, (req, res) => {
 
-app.post('/eventos', function(req, res){
+    const { id } = req.params;
 
-
-res.json({
-    mensagem: 'Evento criado'
-});
-
+    res.json({
+        mensagem: `Aviso ${id} removido`
+    });
 
 });
 
-app.put('/eventos/:id', function(req, res){
 
+// EVENTOS
+app.get('/eventos', verificarLogin, (req, res) => {
 
-const { id } = req.params;
-
-res.json({
-    mensagem: `Evento ${id} atualizado`
-});
-
+    res.sendFile(path.join(__dirname, '../pages/eventos.html'));
 
 });
 
-app.delete('/eventos/:id', function(req, res){
+app.post('/eventos', verificarAdm, (req, res) => {
 
-
-const { id } = req.params;
-
-res.json({
-    mensagem: `Evento ${id} removido`
-});
-
+    res.json({
+        mensagem: 'Evento criado'
+    });
 
 });
 
-app.get('/merenda', function(req, res){
-res.sendFile(path.join(__dirname, '../pages/merenda.html'));
-});
+app.put('/eventos/:id', verificarAdm, (req, res) => {
 
-app.post('/merenda', function(req, res){
+    const { id } = req.params;
 
-
-res.json({
-    mensagem: 'Merenda cadastrada'
-});
-
+    res.json({
+        mensagem: `Evento ${id} atualizado`
+    });
 
 });
 
-app.put('/merenda/:id', function(req, res){
+app.delete('/eventos/:id', verificarAdm, (req, res) => {
 
+    const { id } = req.params;
 
-const { id } = req.params;
-
-res.json({
-    mensagem: `Merenda ${id} atualizada`
-});
-
+    res.json({
+        mensagem: `Evento ${id} removido`
+    });
 
 });
 
-app.delete('/merenda/:id', function(req, res){
 
+// MERENDA
+app.get('/merenda', verificarLogin, (req, res) => {
 
-const { id } = req.params;
-
-res.json({
-    mensagem: `Merenda ${id} removida`
-});
-
+    res.sendFile(path.join(__dirname, '../pages/merenda.html'));
 
 });
 
-app.get('/adm', function(req, res){
-res.sendFile(path.join(__dirname, '../pages/adm.html'));
+app.post('/merenda', verificarAdm, (req, res) => {
+
+    res.json({
+        mensagem: 'Merenda cadastrada'
+    });
+
+});
+
+app.put('/merenda/:id', verificarAdm, (req, res) => {
+
+    const { id } = req.params;
+
+    res.json({
+        mensagem: `Merenda ${id} atualizada`
+    });
+
+});
+
+app.delete('/merenda/:id', verificarAdm, (req, res) => {
+
+    const { id } = req.params;
+
+    res.json({
+        mensagem: `Merenda ${id} removida`
+    });
+
+});
+
+
+// OUVIDORIA
+app.post('/ouvidoria', verificarLogin, (req, res) => {
+
+    res.json({
+        mensagem: 'Solicitação recebida'
+    });
+
 });
 
 
