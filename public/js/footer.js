@@ -94,7 +94,6 @@
   color: #ffffff;
 }
 
-/* ================= FAIXA SUPERIOR (ESTILO PORTAL PARANÁ) ================= */
 .footer-top-bar {
   background-color: #167ec2;
   padding: 12px 24px;
@@ -140,7 +139,6 @@
   flex-shrink: 0;
 }
 
-/* ================= CORPO PRINCIPAL DO RODAPÉ ================= */
 .footer-main-area {
   background-color: #006eb6;
   padding: 36px 24px 24px 24px;
@@ -155,7 +153,6 @@
   gap: 32px;
 }
 
-/* LADO ESQUERDO: LOGO + DIVISOR VERTICAL + TEXTOS */
 .footer-brand-block {
   display: flex;
   align-items: center;
@@ -235,7 +232,6 @@
   text-decoration: underline;
 }
 
-/* LADO DIREITO: REDES SOCIAIS */
 .footer-right-block {
   display: flex;
   flex-direction: column;
@@ -279,7 +275,6 @@
   height: 18px;
 }
 
-/* DIREITOS AUTORAIS */
 .company-rights {
   max-width: 1140px;
   margin: 28px auto 0 auto;
@@ -294,7 +289,6 @@
   margin: 0;
 }
 
-/* ANIMAÇÃO SUAVE AO ROLAR */
 .footer-reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -307,7 +301,6 @@
   transform: translateY(0);
 }
 
-/* RESPONSIVIDADE */
 @media (max-width: 820px) {
   .footer-container {
     flex-direction: column;
